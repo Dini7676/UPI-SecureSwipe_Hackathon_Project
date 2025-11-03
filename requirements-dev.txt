@@ -1,0 +1,12 @@
+# Development dependencies
+black==24.3.0
+flake8==6.2.0
+isort==5.14.0
+pre-commit==3.4.0
+ipython==8.17.0
+jupyterlab==5.4.0
+nbconvert==7.5.0
+
+# Optional profiling and monitoring
+memory-profiler==0.62.0
+line-profiler==4.0.0

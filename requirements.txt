@@ -1,0 +1,34 @@
+# Core dependencies for Suraksha: UPI fraud detection
+numpy
+pandas
+faker
+matplotlib
+seaborn
+plotly
+folium
+scikit-learn
+xgboost
+imbalanced-learn
+joblib
+fastapi
+uvicorn
+kafka-python
+confluent-kafka # optional, install if using Confluent Kafka
+pyspark        # optional, for Spark Structured Streaming (large installs)
+apache-flink    # optional, for Flink (if using Flink instead of Spark)
+pyproj
+geopy
+python-dateutil
+pytz
+sqlalchemy      # optional, if you use a feature store DB
+psycopg2-binary # optional, for Postgres feature store
+mlflow          # optional, model tracking and registry
+python-dotenv
+requests
+# Testing
+pytest
+
+# Notes:
+# - Some packages (confluent-kafka, pyspark, apache-flink) are large and may require system-level
+#   dependencies; install only the ones you need.
+# - If you prefer conda, use an environment.yml instead (I can provide one).
