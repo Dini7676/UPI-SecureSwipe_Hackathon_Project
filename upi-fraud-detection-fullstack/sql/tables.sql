@@ -1,0 +1,55 @@
+-- PostgreSQL schema for UPI Fraud Detection
+
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  mobile VARCHAR(20) UNIQUE,
+  email VARCHAR(100) UNIQUE,
+  role VARCHAR(20) DEFAULT 'USER',
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS merchants (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  upi_id VARCHAR(100) UNIQUE,
+  category VARCHAR(50) DEFAULT 'GENERAL',
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS admin (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) UNIQUE,
+  role VARCHAR(20) DEFAULT 'ADMIN'
+);
+
+CREATE TABLE IF NOT EXISTS transactions (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  merchant_id INTEGER REFERENCES merchants(id),
+  amount NUMERIC NOT NULL,
+  ts TIMESTAMP DEFAULT NOW(),
+  status VARCHAR(20) DEFAULT 'SUCCESS',
+  channel VARCHAR(20) DEFAULT 'UPI',
+  risk_score NUMERIC DEFAULT 0.0,
+  is_fraud BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS otp_logs (
+  id SERIAL PRIMARY KEY,
+  mobile VARCHAR(20),
+  email VARCHAR(100),
+  otp VARCHAR(10),
+  ts TIMESTAMP DEFAULT NOW(),
+  verified BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS fraud_logs (
+  id SERIAL PRIMARY KEY,
+  transaction_id INTEGER,
+  risk_score NUMERIC,
+  level VARCHAR(20),
+  reason TEXT,
+  ts TIMESTAMP DEFAULT NOW()
+);

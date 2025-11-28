@@ -1,0 +1,2 @@
+2025-11-26 15:34:21.261 | INFO     | app.main:on_startup:38 - Redis connection OK
+2025-11-28 03:23:13.857 | INFO     | app.main:on_startup:49 - Redis connection OK
